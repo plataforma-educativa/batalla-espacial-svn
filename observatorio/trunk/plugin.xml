@@ -5,7 +5,7 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="ar.com.comunidadesfera.observatorio.PerspectivaObservatorio"
-            icon="icons/observatorio.png"
+            icon="iconos/observatorio.png"
             id="ar.com.comunidadesfera.observatorio.PerspectivaObservatorio"
             name="Observatorio">
       </perspective>
@@ -19,7 +19,7 @@
       <view
             category="ar.com.comunidadesfera.observatorio.categoria"
             class="org.eclipse.ui.navigator.CommonNavigator"
-            icon="icons/observatorio.png"
+            icon="iconos/observatorio.png"
             id="ar.com.comunidadesfera.observatorio.explorador"
             name="Explorador"
             restorable="true">
