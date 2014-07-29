@@ -11,7 +11,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.jdt.ui,
  org.eclipse.ui.navigator,
  org.eclipse.ui.navigator.resources,
- org.eclipse.ui.ide
+ org.eclipse.ui.ide,
+ org.eclipse.jdt.core
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: ar.com.comunidadesfera.observatorio;
@@ -23,3 +24,5 @@ Export-Package: ar.com.comunidadesfera.observatorio;
    org.eclipse.jface.wizard,
    org.eclipse.jface.viewers,
    org.eclipse.ui.plugin"
+Import-Package: org.eclipse.core.resources,
+   ar.com.comunidadesfera.observatorio.jdt
