@@ -1,70 +1,48 @@
 package ar.com.comunidadesfera.observatorio;
 
-import org.eclipse.jdt.ui.actions.OpenViewActionGroup;
 import org.eclipse.jface.action.IMenuManager;
-import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.actions.ActionContext;
 import org.eclipse.ui.navigator.CommonActionProvider;
 import org.eclipse.ui.navigator.ICommonActionExtensionSite;
 import org.eclipse.ui.navigator.ICommonViewerWorkbenchSite;
 
+import ar.com.comunidadesfera.observatorio.jdt.AbrirAsistenteCrearClaseJava;
+import ar.com.comunidadesfera.observatorio.jdt.AbrirAsistenteCrearProyectoJava;
+
 public class ProveedorDeAccionesObservatorio extends CommonActionProvider {
 
-	private OpenViewActionGroup openViewGroup;
+    public static final String GROUP = "group.observatorio"; //$NON-NLS-1$
+    
+    private boolean contribute = false;
 
-	private boolean inViewPart = false;
-	
-	public ProveedorDeAccionesObservatorio() {
-	}
+    private AbrirAsistenteCrearProyectoJava abrirAsistenteCrearProyectoJava;
+    private AbrirAsistenteCrearClaseJava abrirAsistenteCrearClaseJava;
+
 	
 	@Override
 	public void init(ICommonActionExtensionSite aSite) {
-	
-		super.init(aSite);
-		
-		if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
-			
-			ICommonViewerWorkbenchSite workbenchSite = (ICommonViewerWorkbenchSite) aSite.getViewSite();
+	    
+        if (aSite.getViewSite() instanceof ICommonViewerWorkbenchSite) {
 
-			this.inViewPart = (workbenchSite.getPart() != null) && (workbenchSite.getPart() instanceof IViewPart); 
-					
-			if (this.inViewPart) {
-				
-				IViewPart viewPart = (IViewPart) workbenchSite.getPart();
-
-				this.openViewGroup = new OpenViewActionGroup(viewPart, aSite.getStructuredViewer());
-			}
-		}
+            abrirAsistenteCrearProyectoJava = new AbrirAsistenteCrearProyectoJava();
+            abrirAsistenteCrearClaseJava = new AbrirAsistenteCrearClaseJava();
+            contribute = true;
+        }
 	}
 
 
-	@Override
-	public void setContext(ActionContext context) {
-		super.setContext(context);
-		
-		if (this.inViewPart) {
-			
-			this.openViewGroup.setContext(context);
-		}
-	}
-	
 	@Override
 	public void fillContextMenu(IMenuManager menu) {
 		
-		if (this.inViewPart) {
-			
-			this.openViewGroup.fillContextMenu(menu);
+		if (contribute) {
+		    
+		    menu.appendToGroup("group.observatorio", abrirAsistenteCrearProyectoJava);
+		    menu.appendToGroup("group.observatorio", abrirAsistenteCrearClaseJava);
 		}
 	}
 	
 	@Override
 	public void dispose() {
-	
-		if (this.inViewPart) {
-			
-			this.openViewGroup.dispose();
-		}
-		
-		super.dispose();
+
+	    super.dispose();
 	}
 }
