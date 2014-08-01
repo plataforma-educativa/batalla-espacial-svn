@@ -34,7 +34,6 @@ public class ProveedorDeAccionesObservatorio extends CommonActionProvider {
 	public void fillContextMenu(IMenuManager menu) {
 		
 		if (contribute) {
-		    
 		    menu.appendToGroup("group.observatorio", abrirAsistenteCrearProyectoJava);
 		    menu.appendToGroup("group.observatorio", abrirAsistenteCrearClaseJava);
 		}

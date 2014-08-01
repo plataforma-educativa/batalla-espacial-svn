@@ -24,9 +24,12 @@ import org.eclipse.ui.PlatformUI;
 
 public class AbrirAsistenteCrearProyectoJava extends AbstractOpenWizardAction {
 
+    private static final String ID = "ar.com.comunidadesfera.observatorio.acciones.AbrirAsistenteCrearProyectoJava";
+    
     public AbrirAsistenteCrearProyectoJava() {
-        
-        setText(ActionMessages.OpenNewJavaProjectWizardAction_text);
+
+        setId(ID);
+        setText("Crear Proyecto");
         setDescription(ActionMessages.OpenNewJavaProjectWizardAction_description);
         setToolTipText(ActionMessages.OpenNewJavaProjectWizardAction_tooltip);
         setImageDescriptor(JavaPluginImages.DESC_WIZBAN_NEWJPRJ);

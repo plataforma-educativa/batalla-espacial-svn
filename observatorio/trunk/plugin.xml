@@ -79,7 +79,7 @@
         <actionProvider
               class="ar.com.comunidadesfera.observatorio.ProveedorDeAccionesObservatorio" 
               id="ar.com.comunidadesfera.observatorio.acciones"
-              priority="lowest">
+              priority="highest">
               <enablement>
                 <or/>
               </enablement>
@@ -91,7 +91,6 @@
              </enablement>
         </commonWizard>
    </extension>
-   
    <!--
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
@@ -103,15 +102,14 @@
      </actionProvider>
    </extension>
    -->
-   <!--
    <extension point="org.eclipse.ui.newWizards">
       <category
             id="ar.com.comunidadesfera.observatorio.asistentes.categoria"
-            name="Asistentes del Observatorio">
+            name="Observatorio">
       </category>
       <wizard
             category="ar.com.comunidadesfera.observatorio.asistentes.categoria"
-            class="ar.com.comunidadesfera.observatorio.jdt.AsistenteCrearClase"
+            class="ar.com.comunidadesfera.observatorio.jdt.AsistenteCrearClaseJava"
             id="ar.com.comunidadesfera.observatorio.asistentes.crearClase"
             name="Crear Clase"
             icon="iconos/asistente-crear-clase.gif" 
@@ -121,7 +119,7 @@
       </wizard>
       <wizard
             category="ar.com.comunidadesfera.observatorio.asistentes.categoria"
-            class="ar.com.comunidadesfera.observatorio.jdt.AsistenteCrearProyecto"
+            class="ar.com.comunidadesfera.observatorio.jdt.AsistenteCrearProyectoJava"
             id="ar.com.comunidadesfera.observatorio.asistentes.crearProyecto"
             name="Crear Proyecto"
             icon="iconos/asistente-crear-proyecto.gif" 
@@ -131,7 +129,6 @@
             hasPages="true">
       </wizard>
    </extension>
-   -->
    <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
@@ -188,10 +185,8 @@
          <viewShortcut
                id="org.eclipse.ui.views.ResourceNavigator">
          </viewShortcut>
-         <!--
          <newWizardShortcut id="ar.com.comunidadesfera.observatorio.asistentes.crearClase"/>
          <newWizardShortcut id="ar.com.comunidadesfera.observatorio.asistentes.crearProyecto"/>
-         -->
          <!--
          <hiddenMenuItem id="navigate"/>
          <hiddenMenuItem id="org.eclipse.ui.run"></hiddenMenuItem>

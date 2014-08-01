@@ -14,6 +14,7 @@ package ar.com.comunidadesfera.observatorio.jdt;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.internal.ui.IJavaHelpContextIds;
+import org.eclipse.jdt.internal.ui.JavaPlugin;
 import org.eclipse.jdt.internal.ui.JavaPluginImages;
 import org.eclipse.jdt.internal.ui.actions.ActionMessages;
 import org.eclipse.jdt.ui.actions.AbstractOpenWizardAction;
@@ -23,13 +24,17 @@ import org.eclipse.ui.PlatformUI;
 
 public class AbrirAsistenteCrearClaseJava extends AbstractOpenWizardAction {
 
+    private static final String ID = "ar.com.comunidadesfera.observatorio.acciones.AbrirAsistenteCrearClaseJava";
+    
     public AbrirAsistenteCrearClaseJava() {
 
-        setText(ActionMessages.OpenNewClassWizardAction_text);
+        setId(ID);
+        setText("Crear Clase");
         setDescription(ActionMessages.OpenNewClassWizardAction_description);
         setToolTipText(ActionMessages.OpenNewClassWizardAction_tooltip);
         setImageDescriptor(JavaPluginImages.DESC_WIZBAN_NEWCLASS);
         PlatformUI.getWorkbench().getHelpSystem().setHelp(this, IJavaHelpContextIds.OPEN_CLASS_WIZARD_ACTION);
+        setShell(JavaPlugin.getActiveWorkbenchShell());        
     }
     
     @Override
