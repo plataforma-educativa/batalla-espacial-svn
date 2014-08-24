@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+    xmlns="http://java.sun.com/xml/ns/persistence/orm"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd"
+    version="2.0"
+>
+    <named-query name="buscarIdModulo">
+        <query>
+            SELECT m.id
+            FROM Modulo m
+            WHERE 
+                m.identificacion = :identificacion AND
+                m.version = :version
+        </query>
+    </named-query>
+    
+    <named-query name="buscarIdDiscriminante">
+        <query>
+            SELECT d.id
+            FROM Discriminante d
+            WHERE
+                d.nombre = :nombre AND
+                d.entorno = :entorno
+        </query>
+    </named-query>
+    
+    <named-query name="buscarIdProblema">
+        <query>
+            SELECT p.id
+            FROM Problema p
+            WHERE
+                UPPER(p.nombre) LIKE UPPER(:nombre)
+        </query>
+    </named-query>
+        
+    <named-query name="listarModulos">
+        <query>
+            SELECT m
+            FROM Modulo m
+            ORDER BY
+                m.nombre
+        </query>
+    </named-query>
+    
+    <named-query name="buscarModulos">
+        <query>
+            SELECT m
+            FROM Modulo m
+            WHERE
+                UPPER(m.nombre) LIKE UPPER(:nombre)
+            ORDER BY
+                m.nombre
+        </query>
+    </named-query>
+    
+    <named-query name="buscarMedicionesDeUnModulo">
+        <query>
+            SELECT NEW ar.com.comunidadesfera.eficiencia.reportes.ItemReporte(m.resultado.magnitud, m)
+            FROM Medicion m 
+            WHERE 
+                m.discriminante = :modulo
+                AND
+                m.resultado.unidad = :unidadMedida
+            ORDER BY
+                m.ejecucion.dimension
+        </query>
+    </named-query>
+    
+    <named-query name="sumarizarMedicionesPorDiscriminanteEnUnEntorno">
+        <query>
+            SELECT NEW ar.com.comunidadesfera.eficiencia.reportes.ItemReporte(SUM(m.resultado.magnitud), d)
+            FROM Medicion m JOIN m.discriminante d
+            WHERE 
+                d.entorno = :entorno
+                AND
+                m.resultado.unidad = :unidadMedida
+            GROUP BY
+                d
+        </query>
+    </named-query>
+    
+    <named-query name="promediarMedicionesPorDiscriminanteDimensionEnUnEntorno">
+        <query>
+            SELECT NEW ar.com.comunidadesfera.eficiencia.reportes.ItemReporte(AVG(m.resultado.magnitud), d, m.ejecucion.dimension)
+            FROM Medicion m join m.discriminante d
+            WHERE
+                d.entorno = :entorno
+                AND
+                m.resultado.unidad = :unidadMedida
+            GROUP BY
+                d, 
+                m.ejecucion.dimension                
+            ORDER BY
+                m.ejecucion.dimension ASC,
+                d ASC
+        </query>
+    </named-query>
+    
+</entity-mappings>
