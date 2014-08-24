@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?scenebuilder-preview-i18n-resource ../contenido.properties?>
+<?scenebuilder-stylesheet ../estilos.css?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ar.com.comunidadesfera.batallaespacial.interfaz.eficiencia.ControladorEficiencia">
+  <Label fx:id="mensajeBuscarModulo" styleClass="notificacion-busqueda" text="%metricas.requiere.buscar.modulo" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+  <ToolBar focusTraversable="false" orientation="HORIZONTAL" pickOnBounds="false" prefHeight="40.0" prefWidth="800.0" style="" styleClass="superior" visible="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <items>
+      <Label styleClass="buscar" text="%metricas.modulos.titulo">
+        <labelFor>
+          <TextField id="campoBuscar" fx:id="campoFiltro" onAction="#buscar" prefWidth="168.0" promptText="%metricas.modulos.filtro" />
+        </labelFor>
+      </Label>
+      <fx:reference source="campoFiltro" />
+      <Button fx:id="botonBuscar" alignment="CENTER" cancelButton="false" defaultButton="true" minWidth="-Infinity" mnemonicParsing="false" onAction="#buscar" prefWidth="80.0" styleClass="buscar" text="%metricas.acciones.buscar" textAlignment="CENTER" textOverrun="CLIP" wrapText="false" />
+      <Button fx:id="botonLimpiar" cancelButton="true" defaultButton="false" disable="false" mnemonicParsing="false" onAction="#limpiar" styleClass="limpiar" text="%metricas.acciones.limpiar" visible="true" />
+    </items>
+  </ToolBar>
+  <SplitPane fx:id="panelResultado" dividerPositions="0.3503562945368171" focusTraversable="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+    <items>
+      <VBox maxWidth="1.7976931348623157E308" prefHeight="-1.0" prefWidth="-1.0">
+        <children>
+          <TableView fx:id="tablaModulos" editable="true" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" tableMenuButtonVisible="true" VBox.vgrow="SOMETIMES">
+            <columns>
+              <TableColumn editable="false" maxWidth="100.0" minWidth="30.0" prefWidth="30.0" resizable="true" text="%metricas.modulos.id" fx:id="columnaId" />
+              <TableColumn maxWidth="24.0" minWidth="24.0" prefWidth="24.0" sortable="false" text="%metricas.modulos.seleccionado" fx:id="columnaSeleccionado" />
+              <TableColumn editable="false" prefWidth="300.0" text="%metricas.modulos.nombre" fx:id="columnaNombre" />
+              <TableColumn editable="false" minWidth="60.0" prefWidth="60.0" text="%metricas.modulos.version" fx:id="columnaVersion" />
+              <TableColumn editable="false" prefWidth="200.0" text="%metricas.modulos.descripcion" fx:id="columnaDescripcion" />
+            </columns>
+          </TableView>
+        </children>
+        <padding>
+          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+        </padding>
+      </VBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+        <children>
+          <Label id="mensaje" fx:id="mensajeSeleccionarModulo" alignment="CENTER" styleClass="notificacion-advertencia" text="%metricas.requiere.seleccionar.modulo" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+          <TabPane fx:id="panelGraficos" prefHeight="200.0" prefWidth="200.0" styleClass="floating" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+            <tabs>
+              <Tab style="" text="%metricas.mediciones">
+                <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                      <ScatterChart fx:id="grafico" legendSide="BOTTOM" legendVisible="true" prefHeight="542.0" prefWidth="221.0" title="">
+                        <xAxis>
+                          <NumberAxis label="%metricas.grafico.abscisas" side="BOTTOM" />
+                        </xAxis>
+                        <yAxis>
+                          <NumberAxis label="%metricas.grafico.ordenadas" side="LEFT" />
+                        </yAxis>
+                      </ScatterChart>
+                    </center>
+                  </BorderPane>
+                </content>
+              </Tab>
+              <Tab text="%metricas.contribuciones">
+                <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                      <BarChart fx:id="graficoContribuciones" alternativeColumnFillVisible="false" barGap="0.0" categoryGap="4.0" legendSide="BOTTOM" legendVisible="true" prefHeight="374.0" verticalGridLinesVisible="true">
+                        <xAxis>
+                          <CategoryAxis label="%metricas.grafico.abscisas" side="BOTTOM">
+                            <categories>
+                              <FXCollections fx:factory="observableArrayList" />
+                            </categories>
+                          </CategoryAxis>
+                        </xAxis>
+                        <yAxis>
+                          <NumberAxis label="%metricas.grafico.ordenadas" side="LEFT" />
+                        </yAxis>
+                      </BarChart>
+                    </center>
+                    <top>
+                      <Label alignment="CENTER_LEFT" disable="false" focusTraversable="false" maxHeight="-1.0" minHeight="-1.0" prefHeight="-1.0" styleClass="descripcion" text="%metricas.contribuciones.descripcion" textAlignment="JUSTIFY" underline="false" wrapText="false">
+                        <BorderPane.margin>
+                          <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" fx:id="x1" />
+                        </BorderPane.margin>
+                      </Label>
+                    </top>
+                  </BorderPane>
+                </content>
+              </Tab>
+              <Tab text="%metricas.distribuciones">
+                <content>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                    <center>
+                      <ScrollPane id="ScrollPane" disable="false" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" opacity="1.0" pannable="true" prefViewportHeight="552.0" prefViewportWidth="546.0" style="-fx-background-color:transparent;" vbarPolicy="AS_NEEDED" visible="true">
+                        <content>
+                          <TilePane fx:id="panelDistribuciones" alignment="CENTER" hgap="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" orientation="HORIZONTAL" prefColumns="1" prefHeight="-1.0" prefRows="1" prefTileHeight="-1.0" prefTileWidth="-1.0" prefWidth="-1.0" style="" tileAlignment="CENTER" vgap="10.0" visible="true">
+                            <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                            </padding>
+                          </TilePane>
+                        </content>
+                      </ScrollPane>
+                    </center>
+                    <top>
+                      <Label styleClass="descripcion" text="%metricas.distribuciones.descripcion" textAlignment="JUSTIFY" wrapText="true" BorderPane.margin="$x1" />
+                    </top>
+                  </BorderPane>
+                </content>
+              </Tab>
+            </tabs>
+          </TabPane>
+        </children>
+      </AnchorPane>
+    </items>
+  </SplitPane>
+</AnchorPane>

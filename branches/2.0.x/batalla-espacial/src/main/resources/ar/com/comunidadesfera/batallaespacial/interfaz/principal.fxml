@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?scenebuilder-preview-i18n-resource contenido.properties?>
+<?scenebuilder-stylesheet estilos.css?>
+
+<BorderPane minHeight="600.0" minWidth="720.0" mouseTransparent="false" pickOnBounds="true" prefHeight="400" prefWidth="600" style="&#10;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ar.com.comunidadesfera.batallaespacial.interfaz.ControladorPrincipal">
+  <center>
+    <TabPane fx:id="secciones" cache="false" mouseTransparent="false" pickOnBounds="false" prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" visible="true">
+      <tabs>
+        <Tab styleClass="inicio" text="%seccion.inicio" disable="true">
+          <content>
+                  <FlowPane alignment="CENTER" columnHalignment="RIGHT" prefHeight="200.0" prefWidth="200.0" prefWrapLength="0.0" styleClass="inicio">
+                     <children>
+                <AnchorPane minWidth="-1.0" prefHeight="336.0" prefWidth="537.0" style="&#10;">
+                  <children>
+                    <ImageView fitHeight="540.0" fitWidth="720.0" opacity="1.0" pickOnBounds="true" preserveRatio="true" visible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <image>
+                        <Image url="@inicio2.png" />
+                      </image>
+                    </ImageView>
+                    <Button cancelButton="true" defaultButton="false" layoutX="472.0" layoutY="253.0" mnemonicParsing="true" onAction="#nuevaPartida" opacity="1.0" prefHeight="52.0" prefWidth="226.0" style="" styleClass="nuevaPartida" text="%inicio.partida.nueva" visible="true" />
+                    <Button cancelButton="true" defaultButton="false" layoutX="472.0" layoutY="322.0" mnemonicParsing="true" onAction="#usarLaboratorio" opacity="1.0" prefHeight="52.0" prefWidth="226.0" style="" styleClass="usarLaboratorio" text="%inicio.laboratorio.usar" visible="true" />
+                    <Button cancelButton="true" defaultButton="false" layoutX="472.0" layoutY="391.0" mnemonicParsing="true" onAction="#verRegistros" opacity="1.0" prefHeight="52.0" prefWidth="226.0" style="" styleClass="verRegistros" text="%inicio.registros.ver" visible="true" />
+                  </children>
+                </AnchorPane>
+                     </children>
+                  </FlowPane>
+          </content>
+          <graphic>
+            <ImageView fitHeight="0.0" fitWidth="0.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="inicio" />
+          </graphic>
+        </Tab>
+        <Tab fx:id="seccionPartida" text="%seccion.partida">
+          <content>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="200.0">
+              <center>
+                <ScrollPane fx:id="panelMarcoTablero" content="$null" prefHeight="200.0" prefWidth="200.0" pannable="true">
+                  <BorderPane.margin>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" fx:id="x1" />
+                  </BorderPane.margin>
+                </ScrollPane>
+              </center>
+              <padding>
+                <Insets />
+              </padding>
+              <right>
+                <fx:include fx:id="panelInformes" source="informes/informes.fxml" />
+              </right>
+            </BorderPane>
+          </content>
+          <graphic>
+            <ImageView fitHeight="0.0" fitWidth="0.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="partida" />
+          </graphic>
+        </Tab>
+        <Tab id="" fx:id="seccionLaboratorio" text="%seccion.laboratorio" disable="true">
+          <content>
+            <AnchorPane id="AnchorPane" prefHeight="530.0" prefWidth="740.0">
+              <children>
+                <TabPane id="" disable="false" prefHeight="200.0" prefWidth="200.0" side="TOP" styleClass="floating" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                  <tabs>
+                    <Tab text="%ordenamiento.titulo">
+                      <content>
+                        <fx:include fx:id="panelOrdenamiento" source="laboratorios/ordenamiento/contenedores.fxml" />
+                      </content>
+                    </Tab>
+                    <Tab text="%busqueda.titulo">
+                      <content>
+                        <fx:include fx:id="panelBusqueda" source="laboratorios/busqueda/piezas.fxml" />
+                      </content>
+                    </Tab>
+                  </tabs>
+                </TabPane>
+              </children>
+            </AnchorPane>
+          </content>
+          <graphic>
+            <ImageView fitHeight="0.0" fitWidth="0.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="laboratorio" />
+          </graphic>
+        </Tab>
+        <Tab fx:id="seccionRegistros" closable="false" text="%seccion.registros" disable="true">
+          <content>
+            <fx:include fx:id="panelEficiencia" source="eficiencia/mediciones.fxml" />
+          </content>
+          <graphic>
+            <ImageView fitHeight="0.0" fitWidth="0.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="registros" />
+          </graphic>
+        </Tab>
+        <Tab text="%seccion.configuracion" disable="true">
+          <content>
+            <AnchorPane id="Content" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+          </content>
+          <graphic>
+            <ImageView fitHeight="0.0" fitWidth="0.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="configuracion" />
+          </graphic>
+        </Tab>
+      </tabs>
+      <BorderPane.margin>
+        <Insets />
+      </BorderPane.margin>
+    </TabPane>
+  </center>
+  <top>
+    <MenuBar pickOnBounds="true">
+      <menus>
+        <Menu disable="true" mnemonicParsing="false" style="" text="%menu.partida">
+          <graphic>
+            <ImageView pickOnBounds="true" preserveRatio="true" styleClass="partida" />
+          </graphic>
+          <items>
+            <MenuItem fx:id="nuevaPartida" mnemonicParsing="false" onAction="#nuevaPartida" text="%menu.partida.nueva">
+              <accelerator>
+                <KeyCodeCombination alt="UP" code="N" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+              </accelerator>
+              <graphic>
+                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="nuevaPartida" />
+              </graphic>
+            </MenuItem>
+            <SeparatorMenuItem mnemonicParsing="false" />
+            <MenuItem mnemonicParsing="false" text="%menu.partida.salir">
+              <graphic>
+                <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="salir" />
+              </graphic>
+            </MenuItem>
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="%menu.metricas" disable="true">
+          <graphic>
+            <ImageView pickOnBounds="true" preserveRatio="true" styleClass="metricas" />
+          </graphic>
+          <items>
+            <CheckMenuItem id="" fx:id="menuMetricasRegistrar" mnemonicParsing="false" text="%menu.metricas.registrar" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="%menu.ayuda">
+          <graphic>
+            <ImageView pickOnBounds="true" preserveRatio="true" styleClass="ayuda" />
+          </graphic>
+          <items>
+            <MenuItem fx:id="menuAyudaDocumentacion" mnemonicParsing="false" text="%menu.ayuda.documentacion" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>
